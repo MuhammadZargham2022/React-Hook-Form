@@ -9,8 +9,12 @@ const RegistrationForm = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm({ resolver: yupResolver(FormSchema), });
-
+    const onSubmit = (data) => {
+        console.log(data);
+        reset(); 
+    };
     return (
         <>
             <div className="container">
@@ -18,7 +22,7 @@ const RegistrationForm = () => {
                     <p>Registration Form</p>
                 </div>
 
-                <form onSubmit={handleSubmit((data) => console.log(data))}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="user_details">
 
                         <div className="input_box">
